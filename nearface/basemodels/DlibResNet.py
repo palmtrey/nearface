@@ -5,7 +5,7 @@ import gdown
 import numpy as np
 from pathlib import Path
 
-from deepface.commons import functions
+from nearface.commons import functions
 
 class DlibResNet:
 	

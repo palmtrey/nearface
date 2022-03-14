@@ -7,7 +7,7 @@ from pathlib import Path
 from PIL import Image
 import requests
 
-from deepface.detectors import FaceDetector
+from nearface.detectors import FaceDetector
 
 import tensorflow as tf
 tf_version = tf.__version__

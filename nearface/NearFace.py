@@ -12,9 +12,9 @@ import pandas as pd
 from tqdm import tqdm
 import pickle
 
-from deepface.basemodels import VGGFace, OpenFace, Facenet, Facenet512, FbDeepFace, DeepID, DlibWrapper, ArcFace, Boosting
-from deepface.extendedmodels import Age, Gender, Race, Emotion
-from deepface.commons import functions, realtime, distance as dst
+from nearface.basemodels import VGGFace, OpenFace, Facenet, Facenet512, FbDeepFace, DeepID, DlibWrapper, ArcFace, Boosting
+from nearface.extendedmodels import Age, Gender, Race, Emotion
+from nearface.commons import functions, realtime, distance as dst
 
 import tensorflow as tf
 tf_version = int(tf.__version__.split(".")[0])
@@ -193,12 +193,13 @@ def verify(img1_path, img2_path = '', model_name = 'VGG-Face', distance_metric =
 					if model_name != 'Ensemble':
 
 						threshold = dst.findThreshold(i, j)
-
+						
+						
 						if distance <= threshold:
 							identified = True
 						else:
 							identified = False
-
+						
 						resp_obj = {
 							"verified": identified
 							, "distance": distance
@@ -466,7 +467,7 @@ def analyze(img_path, actions = ('emotion', 'age', 'gender', 'race') , models = 
 
 		return resp_obj
 
-def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', model = None, enforce_detection = True, detector_backend = 'opencv', align = True, prog_bar = True, normalization = 'base'):
+def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', model = None, enforce_detection = True, detector_backend = 'opencv', align = True, prog_bar = True, normalization = 'base', use_threshold = False):
 
 	"""
 	This function applies verification several times and find an identity in a database
@@ -651,7 +652,11 @@ def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', 
 						if model_name != 'Ensemble':
 							threshold = dst.findThreshold(j, k)
 							df = df.drop(columns = ["%s_representation" % (j)])
-							df = df[df["%s_%s" % (j, k)] <= threshold]
+							
+							if use_threshold:
+								df = df[df["%s_%s" % (j, k)] <= threshold]
+							else:
+								df = df[df["%s_%s" % (j, k)]]
 
 							df = df.sort_values(by = ["%s_%s" % (j, k)], ascending=True).reset_index(drop=True)
 

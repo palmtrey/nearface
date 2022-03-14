@@ -3,7 +3,7 @@ import gdown
 from pathlib import Path
 import zipfile
 
-from deepface.commons import functions
+from nearface.commons import functions
 
 import tensorflow as tf
 tf_version = int(tf.__version__.split(".")[0])

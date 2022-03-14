@@ -1,4 +1,4 @@
-from deepface.basemodels import VGGFace
+from nearface.basemodels import VGGFace
 
 import os
 from pathlib import Path
@@ -6,7 +6,7 @@ import gdown
 import numpy as np
 import zipfile
 
-from deepface.commons import functions
+from nearface.commons import functions
 
 import tensorflow as tf
 tf_version = int(tf.__version__.split(".")[0])

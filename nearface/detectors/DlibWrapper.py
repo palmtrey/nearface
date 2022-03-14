@@ -3,7 +3,7 @@ import gdown
 import bz2
 import os
 
-from deepface.commons import functions
+from nearface.commons import functions
 
 def build_model():
 

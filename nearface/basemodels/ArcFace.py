@@ -10,7 +10,7 @@ import os
 from pathlib import Path
 import gdown
 
-from deepface.commons import functions
+from nearface.commons import functions
 
 #url = "https://drive.google.com/uc?id=1LVB3CdVejpmGHM28BpqqkbZP5hDEcdZY"
 

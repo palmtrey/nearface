@@ -1,11 +1,11 @@
-from deepface import DeepFace
+from nearface import NearFace
 from tqdm import tqdm
 import os
 from os import path
 from pathlib import Path
 import numpy as np
 import gdown
-from deepface.commons import functions, distance as dst
+from nearface.commons import functions, distance as dst
 
 def loadModel():
 	
@@ -20,7 +20,7 @@ def loadModel():
 		model_name = model_names[index]
 		
 		model_pbar.set_description("Loading %s" % (model_name))
-		model[model_name] = DeepFace.build_model(model_name)
+		model[model_name] = NearFace.build_model(model_name)
 	
 	return model
 

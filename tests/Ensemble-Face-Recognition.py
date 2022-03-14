@@ -85,8 +85,8 @@ df.file_y = "deepface/tests/dataset/"+df.file_y
 #--------------------------
 #DeepFace
 
-from deepface import DeepFace
-from deepface.basemodels import VGGFace, OpenFace, Facenet, FbDeepFace
+from nearface import NearFace
+from nearface.basemodels import VGGFace, OpenFace, Facenet, FbDeepFace
 
 pretrained_models = {}
 
@@ -108,7 +108,7 @@ if True:
     for model in models:
         for metric in metrics:
 
-            resp_obj = DeepFace.verify(instances
+            resp_obj = NearFace.verify(instances
                                        , model_name = model
                                        , model = pretrained_models[model]
                                        , distance_metric = metric)

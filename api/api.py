@@ -27,7 +27,7 @@ if tf_version == 2:
 
 #------------------------------
 
-from deepface import DeepFace
+from nearface import NearFace
 
 #------------------------------
 
@@ -101,7 +101,7 @@ def analyzeWrapper(req, trx_id = 0):
 	#---------------------------
 
 	try:
-		resp_obj = DeepFace.analyze(instances, actions = actions)
+		resp_obj = NearFace.analyze(instances, actions = actions)
 	except Exception as err:
 		print("Exception: ", str(err))
 		return jsonify({'success': False, 'error': str(err)}), 205
@@ -182,7 +182,7 @@ def verifyWrapper(req, trx_id = 0):
 	#--------------------------
 
 	try:
-		resp_obj = DeepFace.verify(instances
+		resp_obj = NearFace.verify(instances
 			, model_name = model_name
 			, distance_metric = distance_metric
 			, detector_backend = detector_backend
@@ -259,7 +259,7 @@ def representWrapper(req, trx_id = 0):
 
 	try:
 
-		embedding = DeepFace.represent(img
+		embedding = NearFace.represent(img
 			, model_name = model_name
 			, detector_backend = detector_backend
 		)

@@ -9,10 +9,10 @@ import re
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-from deepface import DeepFace
-from deepface.extendedmodels import Age
-from deepface.commons import functions, realtime, distance as dst
-from deepface.detectors import FaceDetector
+from nearface import NearFace
+from nearface.extendedmodels import Age
+from nearface.commons import functions, realtime, distance as dst
+from nearface.detectors import FaceDetector
 
 def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', distance_metric = 'cosine', enable_face_analysis = True, source = 0, time_threshold = 5, frame_threshold = 5):
 
@@ -45,7 +45,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 	if len(employees) > 0:
 
-		model = DeepFace.build_model(model_name)
+		model = NearFace.build_model(model_name)
 		print(model_name," is built")
 
 		#------------------------
@@ -63,13 +63,13 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 		tic = time.time()
 
-		emotion_model = DeepFace.build_model('Emotion')
+		emotion_model = NearFace.build_model('Emotion')
 		print("Emotion model loaded")
 
-		age_model = DeepFace.build_model('Age')
+		age_model = NearFace.build_model('Age')
 		print("Age model loaded")
 
-		gender_model = DeepFace.build_model('Gender')
+		gender_model = NearFace.build_model('Gender')
 		print("Gender model loaded")
 
 		toc = time.time()
