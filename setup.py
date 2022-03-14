@@ -4,16 +4,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="deepface",
-    version="0.0.75",
-    author="Sefik Ilkin Serengil",
-    author_email="serengil@gmail.com",
-    description="A Lightweight Face Recognition and Facial Attribute Analysis Framework (Age, Gender, Emotion, Race) for Python",
+    name="nearface",
+    version="0.1.0",
+    author="Cameron Palmer",
+    author_email="palmtrey779@gmail.com",
+    description="A refined version of the Python library DeepFace",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/serengil/deepface",
+    url="https://github.com/palmtrey/nearface",
     packages=setuptools.find_packages(),
-    scripts=['deepface/models/face-recognition-ensemble-model.txt'],
+    scripts=['nearface/models/face-recognition-ensemble-model.txt'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
