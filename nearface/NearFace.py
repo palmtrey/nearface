@@ -467,7 +467,7 @@ def analyze(img_path, actions = ('emotion', 'age', 'gender', 'race') , models = 
 
 		return resp_obj
 
-def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', model = None, enforce_detection = True, detector_backend = 'opencv', align = True, prog_bar = True, normalization = 'base', use_threshold = False):
+def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', model = None, enforce_detection = True, detector_backend = 'opencv', align = True, prog_bar = True, normalization = 'base', use_threshold = True):
 
 	"""
 	This function applies verification several times and find an identity in a database
@@ -489,7 +489,9 @@ def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', 
 
 		detector_backend (string): set face detector backend as retinaface, mtcnn, opencv, ssd or dlib
 
-		prog_bar (boolean): enable/disable a progress bar
+		prog_bar (boolean): set to True to enable a progress bar, False to disable
+
+		use_threshold (boolean): set to True to use a distance threshold when writing out, False to write all measurements
 
 	Returns:
 		This function returns pandas data frame. If a list of images is passed to img_path, then it will return list of pandas data frame.
@@ -565,7 +567,7 @@ def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', 
 
 			representations = []
 
-			pbar = tqdm(range(0,len(employees)), desc='Finding representations', disable = prog_bar)
+			pbar = tqdm(range(0,len(employees)), desc='Finding representations', disable = (not prog_bar))
 
 			#for employee in employees:
 			for index in pbar:
@@ -656,7 +658,7 @@ def find(img_path, db_path, model_name ='VGG-Face', distance_metric = 'cosine', 
 							if use_threshold:
 								df = df[df["%s_%s" % (j, k)] <= threshold]
 							else:
-								df = df[df["%s_%s" % (j, k)]]
+								df = df[df["%s_%s" % (j, k)] <= 100]
 
 							df = df.sort_values(by = ["%s_%s" % (j, k)], ascending=True).reset_index(drop=True)
 

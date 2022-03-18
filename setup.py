@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="nearface",
-    version="0.1.3",
+    version="0.1.4",
     author="Cameron Palmer",
     author_email="palmtrey779@gmail.com",
     description="A refined version of the Python library DeepFace",
